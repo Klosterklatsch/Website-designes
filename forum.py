@@ -5,7 +5,7 @@ from flask_login import UserMixin,LoginManager,login_required,current_user
 from flask_login import login_user,logout_user
 import os
 import json
-
+from hashlib import sha256
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
@@ -66,7 +66,7 @@ def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
     code = request.form.get('code')
-    
+
     user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
     
     name=name.replace(" ","")
@@ -75,13 +75,22 @@ def signup_post():
         flash('Email address already exists')
         return redirect(url_for('signup'))
 
-    # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='scrypt:32768:8:1'),code=code)
+    valid_code=sha256(email.encode('utf-8')).hexdigest()
 
-    # add the new user to the database
-    db.session.add(new_user)
-    db.session.commit()
-    return redirect(url_for('login'))
+    if valid_code == code:
+
+        # create a new user with the form data. Hash the password so the plaintext version isn't saved.
+        new_user = User(email=email, name=name, password=generate_password_hash(password, method='scrypt:32768:8:1'),code=code)
+
+        # add the new user to the database
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('login'))
+    
+    else:
+        flash('Invalid signup code!')
+        return redirect(url_for('signup'))
+
 
 @app.route('/logout')
 @login_required
