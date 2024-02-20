@@ -1,0 +1,20 @@
+import * as React from "react";
+
+function MyComponent(props) {
+  return (
+    <div className="flex flex-col px-5 text-xs text-black max-w-[248px]">
+      <div className="self-center text-3xl">Anmelden</div>
+      <div className="justify-center items-start py-4 pr-16 pl-4 mt-6 whitespace-nowrap border-blue-800 border-solid bg-zinc-300 border-[3px]">
+        Benutzername
+      </div>
+      <div className="justify-center items-start py-4 pr-16 pl-4 mt-2 whitespace-nowrap border-blue-800 border-solid bg-zinc-300 border-[3px]">
+        Passwort
+      </div>
+      <div className="mt-3.5 w-full text-xs">
+        Noch keinen Account? So kannst du dich registrieren
+      </div>
+    </div>
+  );
+}
+
+
