@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swupel Security</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a; /* Dark grey */
+            color: #b2ebf2; /* Cyan */
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #b2ebf2; /* Cyan */
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #333; /* Dark grey */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #b2ebf2; /* Cyan */
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555; /* Darker grey */
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent darker background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding-bottom: 60px; /* Adjusted padding to accommodate footer */
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #b2ebf2; /* Cyan */
+        }
+
+        .container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            text-align: center;
+            padding: 20px 0;
+            position: fixed; /* Position fixed */
+            width: 100%;
+            bottom: 0; /* Stick to the bottom */
+            z-index: 1000; /* Ensure it appears above other content */
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #b2ebf2; /* Cyan */
+        }
+
+        /* File Upload Styles */
+        .upload-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #file-upload {
+            display: none;
+        }
+
+        .btn {
+            background-color: #333; /* Dark grey */
+            color: #b2ebf2; /* Cyan */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #555; /* Darker grey */
+        }
+
+        /* Hide download button by default */
+        #download-btn {
+            display: none;
+        }
+
+        /* Message */
+        #message {
+            color: #b2ebf2; /* Cyan */
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #message.valid {
+            color: green;
+        }
+
+        #message.invalid {
+            color: red;
+        }
+        #verified {
+            color: #b2ebf2; /* Cyan */
+            font-size: 18px;
+        }
+
+        #creator {
+            color: #b2ebf2; /* Cyan */
+            font-size: 18px;
+        }
+
+        #verified.valid {
+            color: green;
+        }
+
+        #verified.invalid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Swupel Security</h1>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/signer">Sign</a>
+        <a href="/verifier">Verify</a>
+        <a href="/profile">Profile</a>
+    </nav>
+
+    <div class="container">
+        <h2>Welcome to Swupel Security</h2>
+        <p>Verify your images using Swupel Security</p>
+        <p>Choose + upload image to verify your secured image</p>
+
+        <!-- File Upload Section -->
+        <div class="upload-container">
+            <input type="file" id="file-upload">
+            <label for="file-upload" class="btn">Choose File to Verify</label>
+            <label id="upload-btn" class="btn">Verify</label>
+        </div>
+
+        <!-- Message -->
+        <div id="message"></div>
+        <div id="verified"></div>
+        <a href="#" id="creator"></a>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Swupel Security. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript to handle file upload and display the message -->
+    <script>
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            var fileInput = document.getElementById('file-upload');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/upload_img_verify', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display message based on response
+                    if (data.valid) {
+                        document.getElementById('message').textContent = 'Valid';
+                        document.getElementById('message').className = 'valid';
+                        document.getElementById('creator').textContent = 'Created by: '+data.creator;
+                        document.getElementById('creator').setAttribute('data-creator', data.creator);
+                        document.getElementById('creator').className = 'creator';
+
+                        if (data.verified) {
+                            document.getElementById('verified').textContent = 'Creator is Verified: True';
+                            document.getElementById('verified').className = 'valid'; }
+
+                        else {
+                            document.getElementById('verified').textContent = 'Creator is Verified: False';
+                            document.getElementById('verified').className = 'invalid';
+                        }
+                    } else {
+                        document.getElementById('message').textContent = 'Invalid';
+                        document.getElementById('message').className = 'invalid';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Display error message
+                    document.getElementById('message').textContent = 'Error';
+                    document.getElementById('message').className = 'invalid';
+                });
+            } else {
+                console.error('No file selected');
+            }
+        });
+        document.getElementById('creator').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+        
+            // Retrieve the creator's name from the data attribute
+            var creator = this.getAttribute('data-creator');
+        
+            // Redirect to the profile page with the creator's name as a query parameter
+            window.location.href = '/profile_?creator=' + creator;
+        });
+    </script>
+</body>
+</html>
