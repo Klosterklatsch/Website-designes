@@ -7,6 +7,13 @@ import os
 import json
 from hashlib import sha256
 
+def log_in_code_tool():
+    while True:
+        print("ihranA KodE: ",sha256(input("Setzen zie HiEr ElekTroniSche MaiL Addresse ein ; )   |: ").encode('utf-8')).hexdigest())
+        y=input("Hammas ? Y für ja anderes für nein")
+        if y == "Y":
+            break
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
