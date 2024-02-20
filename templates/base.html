@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kloster Klatsch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a; /* Dark grey */
+            color: #b2ebf2; /* Cyan */
+            line-height: 1.6;
+            padding-bottom: 60px; /* Adjusted padding to accommodate footer */
+        }
+
+        input::placeholder {
+            color: black;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+        }
+
+        .navbar-item {
+            color: #b2ebf2; /* Cyan */
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-item:hover {
+            background-color: #555; /* Darker grey */
+        }
+
+        .navbar-menu {
+            background-color: transparent;
+        }
+
+        .navbar-end {
+            margin-right: 10px;
+        }
+
+        .hero-body {
+            background-color: #1a1a1a; /* Dark grey */
+        }
+
+        .container.has-text-centered {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 0px; /* Add margin-bottom to separate header from navbar */
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #b2ebf2; /* Cyan */
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            text-align: center;
+            padding: 20px 0;
+            position: static; /* Changed from fixed */
+            width: 100%;
+            clear: both; /* Ensures footer stays below content */
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #b2ebf2; /* Cyan */
+        }
+        
+        
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Kloster Klatsch</h1>
+    </header>
+
+    <nav class="navbar">
+        <div class="container">
+
+            <div id="navbarMenuHeroA" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="/login" class="navbar-item">
+                        Login
+                    </a>
+                    <a href="/signup" class="navbar-item">
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Kloster Klatsch. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

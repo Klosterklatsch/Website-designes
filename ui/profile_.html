@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swupel Security - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a; /* Dark grey */
+            color: #b2ebf2; /* Cyan */
+            line-height: 1.6;
+            padding-bottom: 60px; /* Adjusted padding to accommodate footer */
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #b2ebf2; /* Cyan */
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #333; /* Dark grey */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #b2ebf2; /* Cyan */
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555; /* Darker grey */
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent darker background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #b2ebf2; /* Cyan */
+        }
+
+        .profile-details {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .profile-details p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .profile-details p strong {
+            font-weight: bold;
+        }
+
+        /* Button */
+        .btn {
+            background-color: #333; /* Dark grey */
+            color: #b2ebf2; /* Cyan */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #555; /* Darker grey */
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            text-align: center;
+            padding: 20px 0;
+            position: fixed; /* Position fixed */
+            width: 100%;
+            bottom: 0; /* Stick to the bottom */
+            z-index: 1000; /* Ensure it appears above other content */
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #b2ebf2; /* Cyan */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Swupel Security</h1>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/signer">Sign</a>
+        <a href="/verifier">Verify</a>
+        <a href="/profile">Profile</a>
+    </nav>
+
+    <div class="container">
+        <h2>User Profile</h2>
+        <div class="profile-details">
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Public Key:</strong> <span id="pubk"></span></p>
+            <p><strong>Verified:</strong> <span id="verified"></span></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Swupel Security. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Retrieve the creator's name from the query parameter
+            var urlParams = new URLSearchParams(window.location.search);
+            var creator = urlParams.get('creator');
+
+            // Perform a POST request to retrieve profile data for the specified creator
+            $.ajax({
+                url: '/profile_',
+                type: 'POST',
+                contentType: 'application/json', // Set the content type to JSON
+                data: JSON.stringify({ "name": creator }), // Convert data object to JSON string
+                success: function(data) {
+                    $('#name').text(data.name);
+                    $('#email').text(data.email);
+                    $('#pubk').text(data.Public_key);
+                    $('#verified').text(data.verified ? 'Yes' : 'No');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
