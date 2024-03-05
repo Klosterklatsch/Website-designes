@@ -1,1 +1,91 @@
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7pP7QJXZmWNJDIXHfFhV9W%2FWebsite-main-page%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3Dm7sCzVnhQYfp56hV-1" allowfullscreen></iframe>
+
+<style>
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        width: 100%;
+    }
+
+    .filters-wrapper {
+        gap: 20px;
+        display: flex;
+    }
+
+    .sort-container,
+    .image-container {
+        display: flex;
+        flex-direction: column;
+        line-height: normal;
+    }
+
+    .sort-title {
+        border: 6px solid #1330ca;
+        background-color: #d9d9d9;
+        margin-top: 399px;
+        flex-grow: 1;
+        justify-content: center;
+        color: #000;
+        width: 100%;
+        padding: 20px 0;
+        font: 400 48px Inter, sans-serif;
+    }
+
+    .footer-section {
+        border: 6px solid #1330ca;
+        background-color: #d9d9d9;
+        min-height: 112px;
+        margin-top: 1331px;
+        width: 100%;
+    }
+
+    @media (max-width: 991px) {
+        .content-wrapper {
+            max-width: 100%;
+            padding-right: 20px;
+        }
+
+        .filters-wrapper {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0px;
+        }
+
+        .sort-container,
+        .image-container {
+            width: 100%;
+        }
+
+        .sort-title {
+            max-width: 100%;
+            font-size: 40px;
+            margin-top: 40px;
+        }
+
+        .responsive-img {
+            max-width: 100%;
+            margin-top: 40px;
+        }
+
+        .footer-section {
+            max-width: 100%;
+            margin-top: 40px;
+        }
+    }
+</style>
+
+<section class="layout">
+    <div class="content-wrapper">
+        <div class="filters-wrapper">
+            <div class="sort-container" style="width: 38%; margin-left: 0px;">
+                <div class="sort-title">Sortieren nach</div>
+            </div>
+            <div class="image-container" style="width: 62%; margin-left: 20px;">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8dd41d4ccd5f0b055baa11b4655d0d2c981a4cdb9a428720a19d026a040bf07c?apiKey=907740f820cc43ffbaf2b0c0edf530a2&" class="responsive-img" alt="Decorative Image" />
+            </div>
+        </div>
+    </div>
+    <footer class="footer-section"></footer>
+</section>
