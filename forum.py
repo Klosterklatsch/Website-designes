@@ -115,6 +115,10 @@ def profile_post():
 def home():
     return send_from_directory("ui","home.html")
 
+@app.route('/testen',methods=["GET"])
+def testen():
+    return send_from_directory("ui","test.html")
+
 @app.route('/test',methods=["GET"])
 @login_required
 def test():
