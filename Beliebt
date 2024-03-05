@@ -1,0 +1,45 @@
+<style>
+  .content-container {
+    border: 6px solid #1330ca;
+    background-color: #d9d9d9;
+    display: flex;
+    max-width: 415px;
+    padding: 18px;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 48px;
+    color: #000;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .popular-text {
+    font-family: Inter, sans-serif;
+    align-self: end;
+    margin-top: 24px;
+    flex-grow: 1;
+  }
+
+  .image-element {
+    aspect-ratio: 0.88;
+    object-fit: auto;
+    object-position: center;
+    width: 55px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
+
+<section class="content-container">
+  <div class="popular-text">Beliebt</div>
+  <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/62856fa56cde38f451c61e89fab1882a0b75733b7c28d2642ed26e566a8238dc?apiKey=907740f820cc43ffbaf2b0c0edf530a2&" alt="Description of image content" class="image-element" />
+</section>
