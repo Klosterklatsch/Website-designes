@@ -3,9 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin,LoginManager,login_required,current_user
 from flask_login import login_user,logout_user
+from hashlib import sha256
 import os
 import json
-
+import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
@@ -24,6 +25,12 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
     code = db.Column(db.String(1000))
+
+class Post(db.Model):
+    inhalt = db.Column(db.String, primary_key=True) # primary keys are required by SQLAlchemy
+    username = db.Column(db.String(100), unique=True)
+    vote = db.Column(db.Integer)
+    id=db.Column(db.Integer, primary_key=True)
 
 with app.app_context():
     db.create_all()
@@ -91,6 +98,21 @@ def signup_post():
         flash('Invalid signup code!')
         return redirect(url_for('signup'))
 
+@app.route('/post',methods=["POST"])
+@login_required
+def post():
+    
+    inhalt = request.form.get('inhalt')
+    vote=0
+    name=current_user.name
+    id=random.randrange(0,9999999999999)
+
+    post=Post(inhalt,name,vote,id)
+
+    db.session.add(post)
+    db.session.commit()
+
+    return jsonify({"message: ":"Post added successfully"}),201
 
 @app.route('/logout')
 @login_required

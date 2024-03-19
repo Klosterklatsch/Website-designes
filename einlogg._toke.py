@@ -6,3 +6,5 @@ def log_in_code_tool():
         y=input("Hammas ? Y für ja anderes für nein")
         if y == "Y":
             break
+
+log_in_code_tool()
