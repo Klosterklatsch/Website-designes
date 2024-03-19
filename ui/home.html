@@ -3,119 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swupel Security - Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Blog</title>
     <style>
-        /* Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-        /* Global Styles */
-        * {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #f9f9f9;
         }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #1a1a1a; /* Dark grey */
-            color: #b2ebf2; /* Cyan */
-            line-height: 1.6;
-            padding-bottom: 60px; /* Adjusted padding to accommodate footer */
-        }
-
-        /* Header */
         header {
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-            padding: 20px 0;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
             text-align: center;
         }
-
-        header h1 {
-            font-size: 36px;
-            color: #b2ebf2; /* Cyan */
-        }
-
-        /* Navbar */
         nav {
-            background-color: #333; /* Dark grey */
-            padding: 10px 0;
+            background-color: #666;
+            padding: 10px;
             text-align: center;
         }
-
         nav a {
-            color: #b2ebf2; /* Cyan */
+            color: #fff;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 5px 10px;
             margin: 0 5px;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
         }
-
         nav a:hover {
-            background-color: #555; /* Darker grey */
+            background-color: #444;
         }
-
-        /* Main Content */
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
+        section {
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent darker background */
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
-
-        .container h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #b2ebf2; /* Cyan */
-        }
-
-        .container p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        /* Footer */
         footer {
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            background-color: #333;
+            color: #fff;
             text-align: center;
-            padding: 20px 0;
-            position: fixed; /* Position fixed */
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
             width: 100%;
-            bottom: 0; /* Stick to the bottom */
-            z-index: 1000; /* Ensure it appears above other content */
         }
-
-        footer p {
-            font-size: 14px;
-            color: #b2ebf2; /* Cyan */
+        .floating-form {
+            position: fixed;
+            bottom: 100px;
+            right: 150px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            width: 70%;
+        }
+        .floating-form h3 {
+            margin-top: 0;
+        }
+        .floating-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .floating-form input[type="text"],
+        .floating-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .floating-form button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .floating-form button:hover {
+            background-color: #444;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Swupel Security</h1>
+        <h1>KlosterKlatsch</h1>
     </header>
-
     <nav>
-        <a href="/">Home</a>
-        <a href="/signer">Sign</a>
-        <a href="/verifier">Verify</a>
-        <a href="/profile">Profile</a>
+        <a href="#">Beliebt</a>
+        <a href="#">Kürzlich erstellt</a>
+        <a href="#">Account</a>
     </nav>
-
-    <div class="container">
-        <h2>Welcome to Swupel Security</h2>
-        <p>Swupel Security is a platform designed to provide robust image verification and signing capabilities to ensure the integrity and authenticity of digital images.</p>
-        <p>With Swupel Security, users can easily verify the authenticity of images they receive and sign images to guarantee their origin and integrity.</p>
-        <p>To get started, simply navigate to the "Verify" page to verify the authenticity of an image, or visit the "Sign" page to sign an image and ensure its integrity.</p>
-        <p>Our platform utilizes advanced cryptographic techniques to generate and verify digital signatures, providing a reliable and secure solution for image verification and signing.</p>
-    </div>
-
+    <section>
+        <h2>Welcome to our Blog!</h2>
+        <!-- Blog Posts Go Here       <embed src="" /> -->
+    </section>
     <footer>
-        <p>&copy; 2024 Swupel Security. All rights reserved.</p>
+        <p>&copy; 2024 Blog. All rights reserved.</p>
     </footer>
+
+    <!-- Floating Form for Writing to the Blog -->
+    <div class="floating-form">
+        <form method="post" action="/post">
+            <textarea id="inhalt" name="inhalt" rows="1" required></textarea>
+            <button type="submit">Publish</button>
+        </form>
+    </div>
 </body>
 </html>
