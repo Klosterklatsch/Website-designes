@@ -3,11 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #666;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #444;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .floating-form {
+            position: fixed;
+            bottom: 100px;
+            right: 150px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            width: 70%;
+        }
+        .floating-form h3 {
+            margin-top: 0;
+        }
+        .floating-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .floating-form input[type="text"],
+        .floating-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .floating-form button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .floating-form button:hover {
+            background-color: #444;
+        }
+    </style>
 </head>
 <body>
-    <div class="image-container">
-        <img src="H:\Website-designes\ui\Logo.png" class="responsive-img" alt="Decorative Image" />
+    <header>
+        <h1>KlosterKlatsch</h1>
+    </header>
+    <nav>
+        <a href="#">Beliebt</a>
+        <embed src="https://drive.google.com/file/d/1g2aBcCR8OmrxCf9HhfeR58fwMqVJ4OEx/view?usp=drive_link" />
+        <a href="#">Recent</a>
+        <a href="#">Account</a>
+    </nav>
+    <section>
+        <h2>Welcome to our Blog!</h2>
+        <!-- Blog Posts Go Here       <embed src="" /> -->
+    </section>
+    <footer>
+        <p>&copy; 2024 Blog. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Form for Writing to the Blog -->
+    <div class="floating-form">
+        <form>
+            <textarea id="content" name="content" rows="1" required></textarea>
+            <button type="submit">Publish</button>
+        </form>
     </div>
 </body>
 </html>

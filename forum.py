@@ -125,3 +125,4 @@ def test():
     return send_from_directory("ui","reg.html")
 
 app.run(debug=True)
+
