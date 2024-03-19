@@ -1,0 +1,30 @@
+<style>
+  .content-container {
+    border: 6px solid #1330ca;
+    background-color: #d9d9d9;
+    display: flex;
+    gap: 7px;
+    font-size: 48px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  .title {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+  }
+
+  .icon-container {
+    stroke-width: 6px;
+    border-radius: 50%;
+    width: 59px;
+    height: 61px;
+  }
+</style>
+
+<section class="content-container">
+  <div class="title">Kürzlich erstellt</div>
+  <div class="icon-container"></div>
+</section>

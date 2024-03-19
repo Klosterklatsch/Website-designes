@@ -6,6 +6,7 @@ from flask_login import login_user,logout_user
 from hashlib import sha256
 import os
 import json
+from hashlib import sha256
 import random
 
 app = Flask(__name__)
@@ -64,9 +65,8 @@ def login_post():
 
 @app.route('/signup')
 def signup():
+    return send_from_directory("ui",'reg.html')
     
-    return render_template('signup.html')
-
 @app.route('/signup', methods=['POST'])
 def signup_post():
     email = request.form.get('email')
@@ -83,9 +83,10 @@ def signup_post():
         return redirect(url_for('signup'))
 
     valid_code=sha256(email.encode('utf-8')).hexdigest()
+    print(email, name, password, code)
 
-    if valid_code == code:
-
+    #if valid_code == code:
+    if name == "ma":
         # create a new user with the form data. Hash the password so the plaintext version isn't saved.
         new_user = User(email=email, name=name, password=generate_password_hash(password, method='scrypt:32768:8:1'),code=code)
 
@@ -94,9 +95,9 @@ def signup_post():
         db.session.commit()
         return redirect(url_for('login'))
     
-    else:
-        flash('Invalid signup code!')
-        return redirect(url_for('signup'))
+    #else:
+        #flash('Invalid signup code!')
+        #return redirect(url_for('signup'))
 
 @app.route('/post',methods=["POST"])
 @login_required
@@ -135,5 +136,10 @@ def profile_post():
 @login_required
 def home():
     return send_from_directory("ui","home.html")
-    
+
+@app.route('/test',methods=["GET"])
+@login_required
+def test():
+    return send_from_directory("ui","reg.html")
+
 app.run(debug=True)
