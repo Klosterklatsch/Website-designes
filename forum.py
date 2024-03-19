@@ -104,11 +104,10 @@ def signup_post():
 def post():
     
     inhalt = request.form.get('inhalt')
-    vote=0
     name=current_user.name
     id=random.randrange(0,9999999999999)
 
-    post=Post(inhalt,name,vote,id)
+    post=Post(inhalt=inhalt,username=name,vote=0,id=id)
 
     db.session.add(post)
     db.session.commit()
