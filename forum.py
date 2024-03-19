@@ -131,10 +131,12 @@ def profile_post():
     return jsonify({"name":current_user.name,"email":current_user.email,"password":current_user.password,"code":current_user.code}),201
 
 
-@app.route('/',methods=["GET"])
+@app.route('/', methods=["GET"])
 @login_required
 def home():
-    return send_from_directory("ui","home.html")
+    # Query all posts from the database
+    posts = Post.query.all()
+    return render_template("home.html", posts=posts)
 
 @app.route('/testen',methods=["GET"])
 def testen():

@@ -88,13 +88,24 @@
         <h1>KlosterKlatsch</h1>
     </header>
     <nav>
-        <a href="#">Beliebt</a>
-        <a href="#">Kürzlich erstellt</a>
+        <img height=30px crossorigin="anonymous"
+        src="https://drive.lienuc.com/uc?id=1g2aBcCR8OmrxCf9HhfeR58fwMqVJ4OEx">
+        <img height=30px crossorigin="anonymous"
+        src="https://drive.lienuc.com/uc?id=1u91_atZOYY7MUdx1oNwm_TB7gAvWLhd1">
         <a href="#">Account</a>
     </nav>
     <section>
         <h2>Welcome to our Blog!</h2>
         <!-- Blog Posts Go Here       <embed src="" /> -->
+    </section>
+    <section>
+        {% for post in posts %}
+        <div>
+            <h3>{{ post.username }}</h3>
+            <p>{{ post.inhalt }}</p>
+            <p>Votes: {{ post.vote }}</p>
+        </div>
+        {% endfor %}
     </section>
     <footer>
         <p>&copy; 2024 Blog. All rights reserved.</p>
